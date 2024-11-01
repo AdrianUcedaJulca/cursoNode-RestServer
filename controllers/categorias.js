@@ -22,8 +22,6 @@ const obtenerCategorias = async(req, res = response) => {
 
 const obtenerCategoria = async( req = request, res = response) => {
 
-    console.log(req.params);
-
     const id = req.params.id;
 
     const categoria = await Categoria.findById(id).populate('usuario');
