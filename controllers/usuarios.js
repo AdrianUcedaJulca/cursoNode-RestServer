@@ -25,6 +25,7 @@ const usuariosGet = async(req = request, res = response) => {
 
     res.json({
         total,
+        totalGet: usuarios.length, 
         usuarios
     });
 }

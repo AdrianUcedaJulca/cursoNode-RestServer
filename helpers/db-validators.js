@@ -1,5 +1,6 @@
+const mongoose = require('mongoose');
+const { Usuario, Categoria } = require('../models');
 const Role = require('../models/rol');
-const Usuario = require('../models/usuario');
 
 const IsValidRol = async( rol = '' ) => {
 
@@ -27,8 +28,20 @@ const ExistsIdUsuario = async( id ) => {
     }
 }
 
+//Validar id de usuario
+const existsCategoria = async( id ) => {
+
+    if( !mongoose.Types.ObjectId.isValid(id) ) return;
+
+    const existeCategoria = await Categoria.findById( id );
+    if( !existeCategoria ){
+        throw new Error("No existe una categoria registrada con ese id");
+    }
+}
+
 module.exports = {
     IsValidRol,
     IsValidEmail,
-    ExistsIdUsuario
+    ExistsIdUsuario,
+    existsCategoria
 }
